@@ -15,10 +15,9 @@ RUN useradd -u ${uid} -g ${group} -s /bin/sh -m ${user} # <--- the '-m' create a
 ENV HOME /home/${user}
 
 WORKDIR ${HOME}
-# COPY factorial.c /home/levtuman/factorial.c
-COPY --chown="${user}":"${group}" factorial.c factorial.c
 
-# RUN chown "${user}":"${group}" /home/levtuman/factorial.c
+# COPY factorial.c to workdir
+COPY --chown="${user}":"${group}" factorial.c factorial.c
 
 # Switch to user
 USER ${uid}:${gid}
