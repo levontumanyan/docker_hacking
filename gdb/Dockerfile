@@ -14,12 +14,11 @@ RUN groupadd -g ${gid} ${group}
 RUN useradd -u ${uid} -g ${group} -s /bin/sh -m ${user} # <--- the '-m' create a user home directory
 ENV HOME /home/${user}
 
+WORKDIR ${HOME}
 # COPY factorial.c /home/levtuman/factorial.c
-COPY --chown="${user}":"${group}" factorial.c /home/levtuman/factorial.c
+COPY --chown="${user}":"${group}" factorial.c factorial.c
 
 # RUN chown "${user}":"${group}" /home/levtuman/factorial.c
 
 # Switch to user
 USER ${uid}:${gid}
-
-WORKDIR ${HOME}
